@@ -2,7 +2,6 @@ import { useThirdwebClient } from "@/constants/thirdweb.client";
 import { cn } from "@/lib/utils";
 import {
   Box,
-  Code,
   Container,
   Flex,
   Icon,
@@ -267,8 +266,11 @@ export const SnapshotUpload: React.FC<SnapshotUploadProps> = ({
                       <>
                         <Text as={ListItem}>
                           Files <em>must</em> contain one .csv file with a list
-                          of addresses and their <Code>maxClaimable</Code>.
-                          (amount each wallet is allowed to claim)
+                          of addresses and their{" "}
+                          <code className="rounded bg-gray-200/20 p-1 text-black dark:text-white">
+                            maxClaimable
+                          </code>
+                          . (amount each wallet is allowed to claim)
                           <br />
                           <Link
                             download
@@ -280,8 +282,8 @@ export const SnapshotUpload: React.FC<SnapshotUploadProps> = ({
                           </Link>
                         </Text>
                         <Text as={ListItem}>
-                          You may optionally add <Code>price</Code> and{" "}
-                          <Code>currencyAddress</Code> overrides as well. This
+                          You may optionally add <code>price</code> and
+                          <code>currencyAddress</code> overrides as well. This
                           lets you override the currency and price you would
                           like to charge per wallet you specified
                           <br />
@@ -307,7 +309,7 @@ export const SnapshotUpload: React.FC<SnapshotUploadProps> = ({
                           </Link>
                         </Text>
                         <Text as={ListItem}>
-                          You may optionally add a <Code>maxClaimable</Code>{" "}
+                          You may optionally add a <code>maxClaimable</code>
                           column override. (amount each wallet is allowed to
                           claim) If not specified, the default value is the one
                           you have set on your claim phase.
@@ -322,8 +324,8 @@ export const SnapshotUpload: React.FC<SnapshotUploadProps> = ({
                           </Link>
                         </Text>
                         <Text as={ListItem}>
-                          You may optionally add <Code>price</Code> and{" "}
-                          <Code>currencyAddress</Code> overrides. This lets you
+                          You may optionally add <code>price</code> and
+                          <code>currencyAddress</code> overrides. This lets you
                           override the currency and price you would like to
                           charge per wallet you specified.{" "}
                           <strong>

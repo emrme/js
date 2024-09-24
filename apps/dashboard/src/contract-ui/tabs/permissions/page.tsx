@@ -1,7 +1,7 @@
 "use client";
 
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
-import { ButtonGroup, Code, Divider, Flex } from "@chakra-ui/react";
+import { ButtonGroup, Divider, Flex } from "@chakra-ui/react";
 import { useTabHref } from "contract-ui/utils";
 import type { ThirdwebContract } from "thirdweb";
 import { Card, Heading, Link, LinkButton, Text } from "tw-components";
@@ -29,7 +29,7 @@ export const ContractPermissionsPage: React.FC<
           Missing PermissionsEnumerable Extension
         </Heading>
         <Text>
-          This contract does not support the <Code>PermissionsEnumerable</Code>{" "}
+          This contract does not support the <code>PermissionsEnumerable</code>
           extension.
           <br />
           As a result, you can only view and manage basic permissions via the{" "}
