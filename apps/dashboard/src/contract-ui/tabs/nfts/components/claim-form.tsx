@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DrawerBody,
   DrawerFooter,
@@ -80,6 +82,7 @@ export const NFTClaimForm: React.FC<NFTClaimFormProps> = ({ contract }) => {
       </DrawerBody>
       <DrawerFooter>
         <TransactionButton
+          txChainID={contract.chain.id}
           transactionCount={1}
           form={CLAIM_FORM_ID}
           isLoading={formState.isSubmitting}

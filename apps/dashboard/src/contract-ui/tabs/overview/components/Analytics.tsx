@@ -1,6 +1,5 @@
 import { ThirdwebAreaChart } from "@/components/blocks/charts/area-chart";
 import { Button } from "@/components/ui/button";
-import { useTabHref } from "contract-ui/utils";
 import {
   useAnalyticsSupportedForChain,
   useLogsAnalytics,
@@ -16,12 +15,14 @@ interface AnalyticsOverviewProps {
   chainId: number;
   contractAddress: string;
   trackingCategory: string;
+  chainSlug: string;
 }
 
 export const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
   chainId,
   contractAddress,
   trackingCategory,
+  chainSlug,
 }) => {
   const analyticsSupported = useAnalyticsSupportedForChain(chainId);
 
@@ -35,32 +36,33 @@ export const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({
   );
   const [endDate] = useState(new Date());
 
-  const analyticsHref = useTabHref("analytics");
-
   if (!analyticsSupported.data) {
     return null;
   }
 
   return (
     <div className="relative">
-      <Button
-        asChild
-        className="absolute top-4 right-6 flex flex-row items-center gap-1"
-        size="sm"
-        variant="outline"
-        onClick={() => {
-          trackEvent({
-            category: trackingCategory,
-            action: "click",
-            label: "view_all_analytics",
-          });
-        }}
-      >
-        <Link href={analyticsHref}>
-          <span>View All</span>
-          <ArrowRightIcon className="size-4" />
-        </Link>
-      </Button>
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <h2 className="font-semibold text-2xl tracking-tight">Analytics</h2>
+        <Button
+          asChild
+          className="gap-1"
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            trackEvent({
+              category: trackingCategory,
+              action: "click",
+              label: "view_all_analytics",
+            });
+          }}
+        >
+          <Link href={`${chainSlug}/${contractAddress}/analytics`}>
+            <span>View All</span>
+            <ArrowRightIcon className="size-4" />
+          </Link>
+        </Button>
+      </div>
 
       <OverviewAnalytics
         chainId={chainId}
@@ -107,7 +109,6 @@ function OverviewAnalytics(props: ChartProps) {
 
   return (
     <ThirdwebAreaChart
-      title="Analytics"
       config={{
         wallets: {
           label: "Unique Wallets",

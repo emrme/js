@@ -2,13 +2,7 @@
 
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   type ChartConfig,
   ChartContainer,
@@ -20,9 +14,6 @@ import {
 import { useMemo } from "react";
 
 type ThirdwebAreaChartProps<TConfig extends ChartConfig> = {
-  // metadata
-  title: string;
-  description?: string;
   // chart config
   config: TConfig;
   data: Array<Record<keyof TConfig, number> & { time: number | string | Date }>;
@@ -38,12 +29,6 @@ export function ThirdwebAreaChart<TConfig extends ChartConfig>(
   const configKeys = useMemo(() => Object.keys(props.config), [props.config]);
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>{props.title}</CardTitle>
-        {props.description && (
-          <CardDescription>{props.description}</CardDescription>
-        )}
-      </CardHeader>
       <CardContent>
         <ChartContainer config={props.config} className={props.chartClassName}>
           <AreaChart

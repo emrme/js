@@ -1,3 +1,5 @@
+"use client";
+
 import { isProd } from "@/constants/env";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";

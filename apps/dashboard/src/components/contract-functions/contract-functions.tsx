@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Flex,
   Tab,
@@ -22,6 +24,8 @@ interface ContractFunctionsOverview {
   abi?: Abi;
   onlyFunctions?: boolean;
 }
+
+// TODO - remove the Tab and then we'll be able to remove use client on this page
 
 export const ContractFunctionsOverview: React.FC<ContractFunctionsOverview> = ({
   functions,
@@ -94,7 +98,11 @@ export const ContractFunctionsOverview: React.FC<ContractFunctionsOverview> = ({
           {abi && (
             <TabPanel>
               <div className="flex flex-col gap-6">
-                <CodeOverview abi={abi} noSidebar />
+                <CodeOverview
+                  abi={abi}
+                  noSidebar
+                  chainId={contract?.chain.id || 1}
+                />
               </div>
             </TabPanel>
           )}

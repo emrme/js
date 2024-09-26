@@ -1,3 +1,6 @@
+"use client";
+
+import { cn } from "@/lib/utils";
 import {
   Box,
   Divider,
@@ -336,7 +339,7 @@ export const ContractFunctionsPanel: React.FC<ContractFunctionsPanelProps> = ({
   );
 
   return (
-    <SimpleGrid height="100%" columns={12} gap={3}>
+    <SimpleGrid height="100%" columns={12} gap={5}>
       <GridItem
         as={Card}
         px={0}
@@ -430,11 +433,13 @@ const FunctionsOrEventsListItem: React.FC<FunctionsOrEventsListItemProps> = ({
   const pathname = usePathname();
   const router = useDashboardRouter();
   return (
-    <ListItem my={0.5}>
+    <ListItem my={1}>
       <Button
         size="sm"
-        fontWeight={isActive ? 600 : 400}
-        opacity={isActive ? 1 : 0.65}
+        className={cn(
+          "!font-medium !text-muted-foreground hover:!text-foreground font-mono",
+          isActive && "!text-foreground",
+        )}
         onClick={() => {
           setSelectedFunction(fn);
 
@@ -444,10 +449,7 @@ const FunctionsOrEventsListItem: React.FC<FunctionsOrEventsListItemProps> = ({
             router.push(`${pathname}?selector=${selector}`);
           }
         }}
-        color="heading"
-        _hover={{ opacity: 1, textDecor: "underline" }}
         variant="link"
-        fontFamily="mono"
       >
         {fn.name}
       </Button>
