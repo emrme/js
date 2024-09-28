@@ -10,7 +10,6 @@ import {
   DrawerHeader,
   FormControl,
   Input,
-  Stack,
   Textarea,
   useModalContext,
 } from "@chakra-ui/react";
@@ -144,9 +143,8 @@ export const LazyMintNftForm: React.FC<LazyMintNftFormParams> = ({
         <Heading>Mint NFT</Heading>
       </DrawerHeader>
       <DrawerBody>
-        <Stack
-          spacing={6}
-          as="form"
+        <form
+          className="flex flex-col gap-6"
           id={LAZY_MINT_FORM_ID}
           onSubmit={handleSubmit(async (data) => {
             if (!address) {
@@ -259,7 +257,7 @@ export const LazyMintNftForm: React.FC<LazyMintNftFormParams> = ({
                 <Heading size="subtitle.md">Advanced Options</Heading>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel px={0} as={Stack} spacing={6}>
+              <AccordionPanel className="flex flex-col gap-6 px-0">
                 <FormControl isInvalid={!!errors.background_color}>
                   <FormLabel>
                     Background Color <OpenSeaPropertyBadge />
@@ -313,7 +311,7 @@ export const LazyMintNftForm: React.FC<LazyMintNftFormParams> = ({
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-        </Stack>
+        </form>
       </DrawerBody>
       <DrawerFooter>
         <Button

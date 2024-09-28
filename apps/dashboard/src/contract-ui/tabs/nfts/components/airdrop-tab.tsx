@@ -1,4 +1,4 @@
-import { Flex, Icon, Stack, useDisclosure } from "@chakra-ui/react";
+import { Flex, Icon, useDisclosure } from "@chakra-ui/react";
 import { TransactionButton } from "components/buttons/TransactionButton";
 import {
   type AirdropAddressInput,
@@ -110,12 +110,7 @@ const AirdropTab: React.FC<AirdropTabProps> = ({ contract, tokenId }) => {
         })}
       >
         <div className="flex flex-col gap-2">
-          <Stack
-            spacing={6}
-            w="100%"
-            direction={{ base: "column", md: "row" }}
-            mb={3}
-          >
+          <div className="mb-3 flex w-full flex-col gap-6 md:flex-row">
             <AirdropUpload
               isOpen={isOpen}
               onClose={onClose}
@@ -151,7 +146,7 @@ const AirdropTab: React.FC<AirdropTabProps> = ({ contract, tokenId }) => {
                 )}
               </Flex>
             </Flex>
-          </Stack>
+          </div>
           <Text>
             You can airdrop to a maximum of 250 addresses at a time. If you have
             more, please do it in multiple transactions.

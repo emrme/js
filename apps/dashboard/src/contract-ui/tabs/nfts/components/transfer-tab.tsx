@@ -1,4 +1,4 @@
-import { FormControl, Input, Stack } from "@chakra-ui/react";
+import { FormControl, Input } from "@chakra-ui/react";
 import { TransactionButton } from "components/buttons/TransactionButton";
 import { SolidityInput } from "contract-ui/components/solidity-inputs";
 import { useTrack } from "hooks/analytics/useTrack";
@@ -86,7 +86,7 @@ const TransferTab: React.FC<TransferTabProps> = ({ contract, tokenId }) => {
         })}
       >
         <div className="flex flex-col gap-3">
-          <Stack spacing={6} w="100%" direction={{ base: "column", md: "row" }}>
+          <div className="flex w-full flex-col gap-6 md:flex-row">
             <FormControl isRequired isInvalid={!!form.formState.errors.to}>
               <FormLabel>To Address</FormLabel>
               <SolidityInput
@@ -115,7 +115,7 @@ const TransferTab: React.FC<TransferTabProps> = ({ contract, tokenId }) => {
                 </FormErrorMessage>
               </FormControl>
             )}
-          </Stack>
+          </div>
           <TransactionButton
             transactionCount={1}
             isLoading={isPending || checking1155}
