@@ -50,6 +50,7 @@ import type {
 } from "thirdweb/extensions/marketplace";
 import { useActiveAccount, useSendAndConfirmTransaction } from "thirdweb/react";
 import {
+  Card,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
@@ -58,7 +59,7 @@ import {
   Text,
 } from "tw-components";
 import { NFTMediaWithEmptyState } from "tw-components/nft-media";
-import { ListLabel } from "./list-label";
+import { shortenIfAddress } from "utils/usedapp-external";
 
 type ListForm =
   | (Omit<CreateListingParams, "quantity" | "currencyContractAddress"> & {
@@ -428,7 +429,25 @@ export const CreateListingsForm: React.FC<CreateListingsFormProps> = ({
                   shouldWrapChildren
                   placement="left-end"
                   key={nft.contractAddress + nft.id}
-                  label={<ListLabel nft={nft} />}
+                  label={
+                    <Card color="paragraph" p={4} bg="backgroundCardHighlight">
+                      <ul>
+                        <li>
+                          <strong>Name:</strong> {nft.metadata?.name || "N/A"}
+                        </li>
+                        <li>
+                          <strong>Contract Address:</strong>{" "}
+                          {shortenIfAddress(nft.contractAddress)}
+                        </li>
+                        <li>
+                          <strong>Token ID: </strong> {nft.id.toString()}
+                        </li>
+                        <li>
+                          <strong>Token Standard: </strong> {nft.type}
+                        </li>
+                      </ul>
+                    </Card>
+                  }
                 >
                   <Box
                     borderRadius="lg"

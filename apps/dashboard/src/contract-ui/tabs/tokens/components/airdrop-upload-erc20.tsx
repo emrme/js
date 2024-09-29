@@ -3,7 +3,6 @@ import { useThirdwebClient } from "@/constants/thirdweb.client";
 import {
   IconButton,
   Link,
-  ListItem,
   Portal,
   Select,
   Table,
@@ -12,7 +11,6 @@ import {
   Th,
   Thead,
   Tr,
-  UnorderedList,
 } from "@chakra-ui/react";
 import { useQueries } from "@tanstack/react-query";
 import {
@@ -224,7 +222,7 @@ export const AirdropUploadERC20: React.FC<AirdropUploadProps> = ({
           <div className="relative aspect-[21/9] w-full">
             <div
               className={cn(
-                "flex cursor-pointer items-center justify-center rounded-md border border-border hover:border-primary",
+                "flex h-full cursor-pointer items-center justify-center rounded-md border border-border hover:border-primary",
                 noCsv ? "bg-red-200" : "bg-card",
               )}
               {...getRootProps()}
@@ -233,7 +231,7 @@ export const AirdropUploadERC20: React.FC<AirdropUploadProps> = ({
               <div className="flex flex-col p-6">
                 <Upload
                   size={16}
-                  className={cn("my-auto text-gray-500", {
+                  className={cn("mx-auto mb-2 text-gray-500", {
                     "text-red-500": noCsv,
                   })}
                 />
@@ -257,20 +255,20 @@ export const AirdropUploadERC20: React.FC<AirdropUploadProps> = ({
           </div>
           <div className="flex flex-col gap-2">
             <Heading size="subtitle.sm">Requirements</Heading>
-            <UnorderedList>
-              <ListItem>
+            <ul className="list-disc pl-3">
+              <li>
                 Files <em>must</em> contain one .csv file with an address and
                 quantity column, if the quantity column is not provided, that
                 record will be flagged as invalid.
                 <Link download color="primary.500" href="/airdrop.csv">
                   Download an example CSV
                 </Link>
-              </ListItem>
-              <ListItem>
+              </li>
+              <li>
                 Repeated addresses will be removed and only the first found will
                 be kept.
-              </ListItem>
-            </UnorderedList>
+              </li>
+            </ul>
           </div>
         </div>
       )}
